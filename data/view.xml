@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+        <record id="view_cita_tree" model="ir.ui.view">
+            <field name="name">cita.cita.tree</field>
+            <field name="model">cita.cita</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Cita">
+                    <field name="cita" />
+                    <field name="autor" />
+                    <field name="orden" />
+                    <field name="fecha_visualizacion" />
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="view_cita_form" model="ir.ui.view">
+            <field name="name">cita.cita.form</field>
+            <field name="model">cita.cita</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Cita">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <table>
+                                    <tr>
+                                        <td style="padding-right:10px;"><field name="cita" required="1" placeholder="Cita" /></td>
+                                    </tr>
+                                </table>
+                            </h1>
+                        </div>
+                        <notebook colspan="4">
+                            <page name="cita_information"
+                                string="Información de la cita">
+                                <group col="4" colspan="4"
+                                    name="cita_detail">
+                                    <field name="autor" />
+                                    <field name="orden" />
+                                    <field name="fecha_visualizacion" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_citas">
+            <field name="name">Citas</field>
+            <field name="res_model">cita.cita</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Crea una nueva cita</p>
+            </field>
+        </record>
+
+        <menuitem id="menu_citas" name="CitasJBG"/>
+        <menuitem id="menu_cita" name="Citas" parent="menu_citas"  
+                  action="action_view_citas"/>
+    </data>
+</odoo>
